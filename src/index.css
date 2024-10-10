@@ -56,6 +56,11 @@ input::placeholder{
 
 
 
+.TitleS11{
+  font-weight: 600;
+  font-size: 50px;
+  line-height: 30px;
+}
 .TitleS28{
   font-weight: 600;
   font-size: 28px;
@@ -529,8 +534,17 @@ input::placeholder{
 .MobileNavigation{
   display: none;
 }
-@media (max-width: 768px){
+.navi{
 
+}
+.navi-component{
+  display: none;
+}
+.navi:hover .navi-component{
+  display: flex;
+}
+
+@media (max-width: 768px){
   .DesktopNavigation{
     display: none;
   }

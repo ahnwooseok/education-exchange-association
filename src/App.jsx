@@ -5,11 +5,13 @@ import {enqueueSnackbar} from "notistack";
 import {UserGetUserInfo} from "./contexts/api.jsx";
 import {BrowserRouter, Router, Route, Routes, useLocation, useNavigate, NavLink} from "react-router-dom";
 import Home from "./pages/Home.jsx";
-import Remittance from "./pages/Remittance.jsx";
-import Withdraw from "./pages/Withdraw.jsx";
-import Statistics from "./pages/Statistics.jsx";
 import MobileNavigation from "./components/MobileNavigation.jsx";
 import DesktopNavigation from "./components/DesktopNavigation.jsx";
+import Footer from "./components/Footer.jsx";
+import Main1 from "./pages/Main1.jsx";
+import Main2 from "./pages/Main2.jsx";
+import Main3 from "./pages/Main3.jsx";
+import Main4 from "./pages/Main4.jsx";
 
 function App() {
     const [system, setSystem] = useRecoilState(systemInfo);
@@ -30,19 +32,17 @@ function App() {
 
             <DesktopNavigation/>
             <MobileNavigation/>
-
-
-
-            <div className={"w-full flexAlign bg-GR100_F9"}>
-                <div className={"flexRow flexAlign-row"} style={{minHeight:"calc(100vh - 80px)", minWidth:"1440px", width:"1440px"}}>
-                    <Routes>
-                        <Route path="/" element={<Home />} />,
-                        <Route path="/remittance" element={<Remittance />} />,
-                        <Route path="/withdraw" element={<Withdraw />} />,
-                        <Route path="/statistics" element={<Statistics />} />,
-                    </Routes>
-                </div>
+            <div className={"flexColumn flexAlign-column w-full"} style={{minHeight:"calc(100vh - 100px)", borderTop:"1px solid #e0e0e0", padding:"0px 20px"}}>
+                <Routes>
+                    <Route path="/" element={<Home />} />,
+                    <Route path="/main1" element={<Main1 />} />,
+                    <Route path="/main2" element={<Main2 />} />,
+                    <Route path="/main3" element={<Main3 />} />,
+                    <Route path="/main4" element={<Main4 />} />,
+                </Routes>
             </div>
+            <Footer/>
+
 
 
         </div>

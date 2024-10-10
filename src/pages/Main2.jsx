@@ -1,12 +1,15 @@
 import {useEffect, useRef, useState} from "react";
 import {useRecoilState} from "recoil";
 import {userInfo} from "../contexts/recoil.jsx";
+import {useLocation} from "react-router-dom";
 
 
 
-function Home() {
+function Main2() {
     const [user,setUser]= useRecoilState(userInfo)
-
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const sub = searchParams.get('sub');
 
     return (
         <div className="w-full flexColumn">
@@ -22,4 +25,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Main2;
