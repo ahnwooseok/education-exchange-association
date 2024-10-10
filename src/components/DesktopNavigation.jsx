@@ -4,7 +4,7 @@ function DesktopNavigation() {
     const routerPush = useNavigate();
 
     return (
-        <div className={"DesktopNavigation w-full relative navi"} style={{padding:"0px 20px"}}>
+        <div className={"DesktopNavigation w-full relative navi"} style={{padding:"0px 20px", maxWidth:"1600px"}}>
 
 
             <div className={"flexRow flexAlign-between w-full h100 bg-White"}>
@@ -22,6 +22,7 @@ function DesktopNavigation() {
                 style={{
                     top: "100px",
                     width: `calc(100vw - 40px)`, // 공백 추가
+                    maxWidth: `1560px`, // 공백 추가
                     zIndex:"999",
                 }}
             >

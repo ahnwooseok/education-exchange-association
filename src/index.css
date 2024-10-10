@@ -61,6 +61,11 @@ input::placeholder{
   font-size: 50px;
   line-height: 30px;
 }
+.TitleS22{
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 40px;
+}
 .TitleS28{
   font-weight: 600;
   font-size: 28px;
@@ -556,5 +561,9 @@ input::placeholder{
 
   .NavLinks{
     background-color: red;
+  }
+
+  .MaxView{
+    display: none;
   }
 }

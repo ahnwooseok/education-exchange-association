@@ -12,6 +12,7 @@ import Main1 from "./pages/Main1.jsx";
 import Main2 from "./pages/Main2.jsx";
 import Main3 from "./pages/Main3.jsx";
 import Main4 from "./pages/Main4.jsx";
+import NoticeDetail from "./components/NoticeDetail.jsx";
 
 function App() {
     const [system, setSystem] = useRecoilState(systemInfo);
@@ -30,15 +31,17 @@ function App() {
     return (
         <div className={"flexColumn flexAlign-column"} style={{width:"100vw"}} >
 
+
             <DesktopNavigation/>
             <MobileNavigation/>
-            <div className={"flexColumn flexAlign-column w-full"} style={{minHeight:"calc(100vh - 100px)", borderTop:"1px solid #e0e0e0", padding:"0px 20px"}}>
+            <div className={"flexColumn flexAlign-column w-full"} style={{minHeight:"calc(100vh - 100px)", borderTop:"1px solid #e0e0e0", padding:"0px 20px", maxWidth:"1600px"}}>
                 <Routes>
                     <Route path="/" element={<Home />} />,
                     <Route path="/main1" element={<Main1 />} />,
                     <Route path="/main2" element={<Main2 />} />,
                     <Route path="/main3" element={<Main3 />} />,
                     <Route path="/main4" element={<Main4 />} />,
+                    <Route path="/noticedetail" element={<NoticeDetail />} />
                 </Routes>
             </div>
             <Footer/>
