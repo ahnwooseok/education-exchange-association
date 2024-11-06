@@ -8,7 +8,7 @@ function DesktopNavigation() {
 
 
             <div className={"flexRow flexAlign-between w-full h100 bg-White"}>
-                <div className={"Title2B20 cursor"} style={{width:"180px"}} onClick={()=>{routerPush("/")}}>교육_아이콘</div>
+                <img src={"/images/logo.png"} className={"cursor w100"} onClick={()=>{routerPush("/")}}/>
                 <div className={"flexRow flexAlign-column flexAlign-around w-full"}>
                     <div className={"Body1S16 cursor"} onClick={()=>{routerPush("/main1?sub=0")}}>협회 소개</div>
                     <div className={"Body1S16 cursor"} onClick={()=>{routerPush("/main2?sub=0")}}>협회 사업</div>

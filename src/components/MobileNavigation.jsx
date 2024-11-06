@@ -21,7 +21,7 @@ function MobileNavigation() {
 
     return (
         <div className={"flexRow flexAlign-between w-full h100 bg-White MobileNavigation"} style={{padding:"0px 20px"}}>
-            <div className={"Title2B20 cursor"} style={{width:"180px"}} onClick={()=>{routerPush("/")}}>교육_아이콘</div>
+            <img src={"/images/logo.png"} className={"cursor w80"} onClick={()=>{routerPush("/")}}/>
             { click ? Close : Hamburger}
             {click &&
                 <div

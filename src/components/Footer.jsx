@@ -9,8 +9,8 @@ const Footer = () => {
                     로고
                 </div>
                 <div style={infoStyles}>
-                    <p>서울시 서초구 남부순환로00길 33 한국외교협회 별관 0층 000호</p>
-                    <p>외교부 인가 비영리 사단법인(제000호)</p>
+                    <p>서울특별시 중랑구 사가정로 41길 6 (면목동)</p>
+                    <p>한국국제교육교류우호협회 사단법인</p>
                     <p>Tel: 02-0000-0000</p>
                 </div>
                 <div style={copyrightStyles}>
