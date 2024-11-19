@@ -1,12 +1,13 @@
 import {useEffect, useRef, useState} from "react";
 import {useRecoilState} from "recoil";
 import {userInfo} from "../contexts/recoil.jsx";
-
+import useWindowWidth from "../hooks/useWindowWidth.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 function Home() {
     const [user,setUser]= useRecoilState(userInfo)
-
+    const width = useWindowWidth();
 
 
     const [flexValues, setFlexValues] = useState([1, 1, 1]);  // 기본 값은 모두 1
@@ -25,6 +26,7 @@ function Home() {
 
 
     const categories = ['공지사항', '보도자료'];
+
 
     const newsItems = [
         {
@@ -46,7 +48,11 @@ function Home() {
             date: "2023-12-28",
         },
     ];
+
+
+    const mainItems = ["국제전략포럼","데이터경제포럼", "교육문화교류플랫폼"]
     const [activeCategory, setActiveCategory] = useState('전체');
+    const routerPush = useNavigate();
 
     return (
         <div className="w-full flexColumn">
@@ -58,101 +64,98 @@ function Home() {
                 </div>
             </div>
             <div className={"h40"}/>
-            <div className={"TitleS22"}>
-                OUR BUSINESS
+            <div className={width < 678 ? "ft-20-600" : "ft-32-600"}>
+                협회 사업
             </div>
             <div className={"h20"}/>
 
-            <div className="flexRow w-full">
-                {[0, 1, 2].map((index) => (
+            <div className={width < 678 ? "flexColumn w-full" : "flexRow w-full"}>
+                {mainItems.map((item, index) => (
                     <div
                         key={index}
                         className={"relative"}
-                        style={{ flex: `${flexValues[index]} 1 0%`, marginRight:index !== 2 ? "20px" : "0px"}}
+                        style={{ flex: `${flexValues[index]} 1 0%`, marginRight:width < 678 ? "0px" : index !== 2 ? "20px" : "0px", marginBottom:"20px"}}
                         onMouseEnter={() => handleMouseEnter(index)}
                         onMouseLeave={handleMouseLeave}
                     >
                         <img
-                            // src={`/images/그림${index + 1}.jpg`}
                             src={`/images/그림1.png`}
-                            style={{width:"100%"}}
+                            style={{width:"100%", height:"400px"}}
                             className="round-20"
-                            alt={`business-${index}`}
                         />
-                        <div className={"absolute Body1S16 White"} style={{bottom:"10px", left:"10px"}}>
-                            메인사업 {index+1}
+                        <div className={"absolute ft-24-700 White"} style={{top:"20px", left:"20px"}}>
+                            {item}
+                        </div>
+                        <div
+                            className={"absolute ft-12-400 White cursor"}
+                            style={{bottom:"10px", right:"10px", border:"1px solid #fff", padding:"4px 8px"}}
+                            onClick={()=>{
+                                routerPush(`/main2?sub=${index}`)
+                            }}
+                        >
+                            바로가기
                         </div>
                     </div>
                 ))}
             </div>
 
             <div className={"h40"}/>
-            <div className={"TitleS22"}>
-                NEWSROOM
+            <div className={width < 678 ? "ft-20-600" : "ft-32-600"}>
+                공지사항
             </div>
             <div className={"h20"}/>
-            <div style={{ padding: '20px', backgroundColor: '#b87333' }}>
-                {/* 카테고리 탭 */}
-                <div style={{ display: 'flex', justifyContent: 'flex-start', marginBottom: '20px' }}>
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            style={{
-                                backgroundColor: activeCategory === category ? 'white' : 'transparent',
-                                border: activeCategory === category ? '2px solid red' : 'none',
-                                padding: '10px 20px',
-                                marginRight: '10px',
-                                fontSize: '16px',
-                                borderRadius: '10px',
-                                cursor: 'pointer',
-                            }}
-                            onClick={() => setActiveCategory(category)}
-                        >
-                            {category}
-                        </button>
-                    ))}
-                </div>
-
-                {/* 뉴스 카드 섹션 */}
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    {newsItems.map((news) => (
-                        <div
-                            key={news.id}
-                            style={{
-                                backgroundColor: '#ffffff',
-                                width: '30%',
-                                borderRadius: '20px',
-                                padding: '20px',
-                                boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-                                textAlign: 'left',
-                            }}
-                        >
-                            <div>
-                                <span style={{ fontWeight: 'bold' }}>뉴스</span>
-                                <h3>{news.title}</h3>
-                                <p>{news.description}</p>
-                                <p style={{ color: '#999', marginTop: '10px' }}>{news.date}</p>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-
-                {/* 더보기 버튼 */}
-                <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-                    <button
+            <div className={"flexRow"} style={{overflowX:"scroll"}}>
+                {newsItems.concat(newsItems).concat(newsItems).concat(newsItems).map((news) => (
+                    <div
+                        key={news.id}
                         style={{
-                            backgroundColor: 'white',
-                            padding: '10px 20px',
-                            borderRadius: '5px',
-                            cursor: 'pointer',
-                            border: '1px solid #333',
+                            backgroundColor: '#ffffff',
+                            minWidth: '400px',
+                            marginRight:"20px",
+                            borderRadius: '20px',
+                            padding: '20px',
+                            textAlign: 'left',
+                            border:"1px solid #d9d9d9"
                         }}
                     >
-                        더 보러가기
-                    </button>
-                </div>
+                        <div>
+                            <span style={{ fontWeight: 'bold' }}>뉴스</span>
+                            <h3>{news.title}</h3>
+                            <p>{news.description}</p>
+                            <p style={{ color: '#999', marginTop: '10px' }}>{news.date}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
 
+            <div className={"h20"}/>  <div className={"h20"}/>
+            <div className={width < 678 ? "ft-20-600" : "ft-32-600"}>
+                보도자료
+            </div>
+            <div className={"h20"}/>
+            <div className={"flexRow"} style={{overflowX:"scroll"}}>
+                {newsItems.concat(newsItems).concat(newsItems).concat(newsItems).map((news) => (
+                    <div
+                        key={news.id}
+                        style={{
+                            backgroundColor: '#ffffff',
+                            minWidth: '400px',
+                            marginRight:"20px",
+                            borderRadius: '20px',
+                            padding: '20px',
+                            textAlign: 'left',
+                            border:"1px solid #d9d9d9"
+                        }}
+                    >
+                        <div>
+                            <span style={{ fontWeight: 'bold' }}>뉴스</span>
+                            <h3>{news.title}</h3>
+                            <p>{news.description}</p>
+                            <p style={{ color: '#999', marginTop: '10px' }}>{news.date}</p>
+                        </div>
+                    </div>
+                ))}
+            </div>
             <div className={"h40"}/>
 
 

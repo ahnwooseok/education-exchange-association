@@ -3,12 +3,14 @@ import {useRecoilState} from "recoil";
 import {userInfo} from "../contexts/recoil.jsx";
 import {useLocation} from "react-router-dom";
 import CooperationProposalForm from "../components/CooperationProposalForm.jsx";
+import useWindowWidth from "../hooks/useWindowWidth.jsx";
 
 
 
 function Main3() {
     const [user,setUser]= useRecoilState(userInfo)
     const location = useLocation();
+    const width = useWindowWidth();
     const searchParams = new URLSearchParams(location.search);
     const sub = searchParams.get('sub');
     const subContents = ["협력분야", "협력기관"]

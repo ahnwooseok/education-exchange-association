@@ -2,57 +2,21 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <footer style={footerStyles}>
-            <div style={containerStyles}>
-                <div style={logoContainerStyles}>
-                    {/* 로고를 여기에 추가 (이미지 파일 경로를 넣으세요) */}
-                    로고
+            <div className={"flexColumn w-full"} style={{padding:"12px 24px", backgroundColor:"#2B2B2B"}}>
+                <img src={"/images/logo.png"}  style={{height:"48px", marginRight:"auto"}}/>
+                <div className={"h8"}/>
+                <div className={"ft-12-400 co-findy4"} style={{lineHeight:"150%"}}>
+                    사단법인 한국국제교육교류우호협회 │ 대표 : 강준영<br/>
+                    서울특별시 중랑구 사가정로 41길 6 (면목동)<br/>
+                    외교부 인가 비영리 사단법인(제603호)<br/>
+                    Tel 02-6471-8602<br/>
                 </div>
-                <div style={infoStyles}>
-                    <p>서울특별시 중랑구 사가정로 41길 6 (면목동)</p>
-                    <p>한국국제교육교류우호협회 사단법인</p>
-                    <p>Tel: 02-0000-0000</p>
-                </div>
-                <div style={copyrightStyles}>
-                    <p>Copyright©INTERNATIONAL 000 000 000. All right reserved.</p>
+                <div className={"h24"}/>
+                <div className={"flexColumn flexAlign"}>
+                    <div className={"ft-12-600 co-findy4"}>Copyright 2024. KOREA INTERNATIONAL EDUCATION EXCHANGE AND FRIENDSHIP ASSOCIATION. all rights reserved.</div>
                 </div>
             </div>
-        </footer>
     );
-};
-
-// 스타일링을 위한 객체 (CSS in JS 방식)
-const footerStyles = {
-    width: '100%',
-    backgroundColor: '#f1f1f1',
-    padding: '20px 0',
-    textAlign: 'center',
-};
-
-const containerStyles = {
-    maxWidth: '1200px',
-    margin: '0 auto',
-    padding: '0 20px',
-};
-
-const logoContainerStyles = {
-    marginBottom: '10px',
-};
-
-const logoStyles = {
-    maxWidth: '150px',
-};
-
-const infoStyles = {
-    fontSize: '14px',
-    color: '#333',
-    lineHeight: '1.5',
-    marginBottom: '10px',
-};
-
-const copyrightStyles = {
-    fontSize: '12px',
-    color: '#888',
 };
 
 export default Footer;

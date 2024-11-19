@@ -2,12 +2,14 @@ import {useEffect, useRef, useState} from "react";
 import {useRecoilState} from "recoil";
 import {userInfo} from "../contexts/recoil.jsx";
 import {useLocation} from "react-router-dom";
+import useWindowWidth from "../hooks/useWindowWidth.jsx";
 
 
 
 function Main2() {
     const [user,setUser]= useRecoilState(userInfo)
     const location = useLocation();
+    const width = useWindowWidth();
     const searchParams = new URLSearchParams(location.search);
     const sub = searchParams.get('sub');
     const subContents = ["사업1", "사업2", "사업3"]
@@ -28,7 +30,7 @@ function Main2() {
             </div>
             <div className={"h40"}/>
             {sub === "0" ?
-                <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+                <div style={{ padding: '20px', margin: '0 auto' }}>
                     <h2>인성진학 코칭연구소</h2>
 
                     <p style={paragraphStyle}>
@@ -63,7 +65,7 @@ function Main2() {
                     </p>
                 </div>                :
                 sub === "1" ?
-                    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+                    <div style={{ padding: '20px', margin: '0 auto' }}>
                         <h2>진로직업 코칭연구소</h2>
 
                         <p style={paragraphStyle}>
@@ -90,7 +92,7 @@ function Main2() {
                         </p>
                     </div>                    :
 
-                    <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
+                    <div style={{ padding: '20px', margin: '0 auto' }}>
                         <h2>글로벌 고등교육 연구소</h2>
 
                         <p style={paragraphStyle}>

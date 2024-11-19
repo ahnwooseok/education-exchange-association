@@ -1,9 +1,11 @@
 import { useState } from "react";
 import {useNavigate} from "react-router-dom";
+import useWindowWidth from "../hooks/useWindowWidth.jsx";
 
 function Main4() {
     const searchParams = new URLSearchParams(location.search);
     const sub = searchParams.get('sub');
+    const width = useWindowWidth();
     const subContents = ["공지사항", "보도자료"];
     const routerPush = useNavigate();
     const notices = [
