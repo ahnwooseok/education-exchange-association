@@ -28,6 +28,7 @@ function Home() {
     const categories = ['공지사항', '보도자료'];
 
 
+
     const newsItems = [
         {
             id: 1,
