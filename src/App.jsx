@@ -13,6 +13,7 @@ import Main2 from "./pages/Main2.jsx";
 import Main3 from "./pages/Main3.jsx";
 import Main4 from "./pages/Main4.jsx";
 import NoticeDetail from "./components/NoticeDetail.jsx";
+import Admin from "./pages/Admin.jsx";
 
 function App() {
     const [system, setSystem] = useRecoilState(systemInfo);
@@ -29,8 +30,15 @@ function App() {
     const routerPush = useNavigate();
 
     return (
-        <div className={"flexColumn flexAlign-column"} style={{width:"100vw"}} >
 
+        window.location.pathname === "/admin" ?
+
+            <Routes>
+                <Route path="/admin" element={<Admin />} />,
+            </Routes>
+            :
+
+        <div className={"flexColumn flexAlign-column"} style={{width:"100vw"}} >
             <DesktopNavigation/>
             <MobileNavigation/>
             <div className={"flexColumn flexAlign-column w-full"} style={{minHeight:"calc(100vh - 100px)", borderTop:"1px solid #e0e0e0", padding:"0px 20px", maxWidth:"1600px"}}>
