@@ -31,7 +31,6 @@ function App() {
     return (
         <div className={"flexColumn flexAlign-column"} style={{width:"100vw"}} >
 
-
             <DesktopNavigation/>
             <MobileNavigation/>
             <div className={"flexColumn flexAlign-column w-full"} style={{minHeight:"calc(100vh - 100px)", borderTop:"1px solid #e0e0e0", padding:"0px 20px", maxWidth:"1600px"}}>

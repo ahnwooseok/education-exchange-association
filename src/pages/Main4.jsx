@@ -46,9 +46,9 @@ function Main4() {
     };
     // 가상의 보도자료 데이터 (썸네일, 제목)
     const pressReleases = [
-        { id: 1, title: '국제교육교류협회, 2024년 글로벌 교육 협력 방안 발표', thumbnail: '/images/그림1.png' },
-        { id: 2, title: '2023 국제 교육 포럼 성황리에 종료', thumbnail: '/images/그림1.png' },
-        { id: 3, title: 'IEEA, 해외 명문대와의 협력 강화', thumbnail: '/images/그림1.png' },
+        { id: 1, title: '국제교육교류협회, 2024년 글로벌 교육 협력 방안 발표', thumbnail: '/images/main2sub2.png' },
+        { id: 2, title: '2023 국제 교육 포럼 성황리에 종료', thumbnail: '/images/main2sub2.png' },
+        { id: 3, title: 'IEEA, 해외 명문대와의 협력 강화', thumbnail: '/images/main2sub2.png' },
         // 추가 뉴스 항목들...
     ];
     // 스타일 정의
@@ -86,11 +86,7 @@ function Main4() {
         <div className="w-full flexColumn">
             <div className={"h60"} />
             <div className={"relative"}>
-                <img
-                    src={"/images/그림1.png"}
-                    className={"w-full round-20"}
-                    style={{ maxHeight: "500px" }}
-                />
+                <img src={`/images/main4sub${sub}.png`} className={"w-full round-20"} style={{maxHeight:"500px"}}/>
                 <div className={"TitleS11 absolute White"} style={{ left: "40px", top: "80%" }}>
                     {subContents[sub]}
                 </div>
@@ -98,7 +94,7 @@ function Main4() {
             <div className={"h40"} />
             {
              sub === "0" ?
-                 <div style={{ padding: "20px", width: "100%", margin: "0 auto" }}>
+                 <div className={"flexColumn flexAlign-row"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
                      <h2>공지사항</h2>
                      <div className={"w-full"}>
                          {currentNotices.map((item, idx) => (
@@ -156,7 +152,7 @@ function Main4() {
                      </div>
                  </div>
                  :
-                 <div className="w-full flexColumn" style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+                 <div className={"flexColumn flexAlign-row"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
                      <h2>보도자료</h2>
                      <div className="grid-container" style={gridContainerStyle}>
                          {pressReleases.map((item, idx) => (

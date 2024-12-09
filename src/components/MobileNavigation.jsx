@@ -83,11 +83,11 @@ function MobileNavigation() {
                         menuClk === 2 ?
                             <div className={"flexColumn"} style={{padding:"10px 20px"}}>
                                 <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=0")
-                                    setClick(false)}}>사업1</div>
+                                    setClick(false)}}>국제전략포럼</div>
                                 <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=1")
-                                    setClick(false)}}>사업2</div>
+                                    setClick(false)}}>데이터경제포럼</div>
                                 <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=2")
-                                    setClick(false)}}>사업3</div>
+                                    setClick(false)}}>교육문화교류플랫폼</div>
                             </div>
                             :
                             ""
@@ -103,6 +103,8 @@ function MobileNavigation() {
                                     setClick(false)}}>협력분야</div>
                                 <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main3?sub=1")
                                     setClick(false)}}>협력기관</div>
+                                <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main3?sub=2")
+                                    setClick(false)}}>협력제안</div>
                             </div>
                             :
                             ""

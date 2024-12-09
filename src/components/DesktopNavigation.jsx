@@ -7,13 +7,15 @@ function DesktopNavigation() {
         <div className={"DesktopNavigation w-full relative navi"} style={{padding:"0px 20px", maxWidth:"1600px"}}>
 
 
-            <div className={"flexRow flexAlign-between w-full h100 bg-White"}>
+            <div
+                className={"flexRow flexAlign-between w-full h100 bg-White"}
+            >
                 <img src={"/images/logo.png"} className={"cursor w60"} onClick={()=>{routerPush("/")}}/>
                 <div className={"flexRow flexAlign-column flexAlign-around w-full"}>
-                    <div className={"Body1S16 cursor w80"} onClick={()=>{routerPush("/main1?sub=0")}}>협회 소개</div>
-                    <div className={"Body1S16 cursor w80"} onClick={()=>{routerPush("/main2?sub=0")}}>협회 사업</div>
-                    <div className={"Body1S16 cursor w80"} onClick={()=>{routerPush("/main3?sub=0")}}>협회 협력</div>
-                    <div className={"Body1S16 cursor w80"} onClick={()=>{routerPush("/main4?sub=0")}}>협회 소식</div>
+                    <div className={"Body1S16 cursor w80 textAlign-center"} onClick={()=>{routerPush("/main1?sub=0")}}>협회 소개</div>
+                    <div className={"Body1S16 cursor w120 textAlign-center"} style={{minWidth:"120px"}} onClick={()=>{routerPush("/main2?sub=0")}}>협회 사업</div>
+                    <div className={"Body1S16 cursor w80 textAlign-center"} onClick={()=>{routerPush("/main3?sub=0")}}>협회 협력</div>
+                    <div className={"Body1S16 cursor w80 textAlign-center"} onClick={()=>{routerPush("/main4?sub=0")}}>협회 소식</div>
                 </div>
             </div>
 
@@ -39,14 +41,15 @@ function DesktopNavigation() {
                         <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main1?sub=3")}}>협회연혁</div>
                         <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main1?sub=4")}}>오시는길</div>
                     </div>
-                    <div className={"flexColumn flexAlign-column w80"}>
-                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=0")}}>사업1</div>
-                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=1")}}>사업2</div>
-                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=2")}}>사업3</div>
+                    <div className={"flexColumn flexAlign-column w120"}>
+                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=0")}}>국제전략포럼</div>
+                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=1")}}>데이터경제포럼</div>
+                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main2?sub=2")}}>교육문화교류플랫폼</div>
                     </div>
                     <div className={"flexColumn flexAlign-column w80"}>
                         <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main3?sub=0")}}>협력분야</div>
                         <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main3?sub=1")}}>협력기관</div>
+                        <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main3?sub=2")}}>협력제안</div>
                     </div>
                     <div className={"flexColumn flexAlign-column w80"}>
                         <div className={"Body2M16 cursor"} style={{padding:"10px 0px"}} onClick={()=>{routerPush("/main4?sub=0")}}>공지사항</div>

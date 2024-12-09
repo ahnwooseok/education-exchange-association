@@ -1,36 +1,7 @@
 import React, { useState } from 'react';
 
 const CooperationProposalForm = () => {
-    const [formData, setFormData] = useState({
-        name: '',
-        organization: '',
-        emailUsername: '',
-        emailDomain: '',
-        phone: '',
-        proposal: '',
-        file: null,
-        captcha: '',
-    });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleFileChange = (e) => {
-        setFormData({ ...formData, file: e.target.files[0] });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Form Data:', formData);
-    };
-// 인라인 스타일 정의
-    const fieldContainerStyle = {
-        marginBottom: '20px',
-        padding: '10px',
-        border: '1px solid #ccc',
-        borderRadius: '8px',
-    };
     return (
         <div style={{ padding: '20px', maxWidth: '1000px', margin: '0 auto' }}>
             <h2>협력분야</h2>

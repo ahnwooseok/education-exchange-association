@@ -39,14 +39,14 @@ function Main1() {
         <div className="w-full flexColumn">
             <div className={"h60"}/>
             <div className={"relative"}>
-                <img src={"/images/그림1.png"} className={"w-full round-20"} style={{maxHeight:"500px"}}/>
+                <img src={`/images/main1sub${sub}.png`} className={"w-full round-20"} style={{maxHeight:"500px"}}/>
                 <div className={width<678 ? "Title1B24 absolute White" : "TitleS11 absolute White"} style={{left:"40px", top:"80%"}}>
                     {subContents[sub]}
                 </div>
             </div>
             <div className={"h40"}/>
             {sub === "0" ?
-                <div style={{ padding: '20px', margin: '0 auto' }}>
+                <div className={"flexColumn flexAlign-row"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
                     {/*width*/}
                     <div className={width < 678 ? "flexColumn" : "flexRow flexAlign-start"}>
                         <div className={"flexColumn flexAlign"}>
@@ -58,7 +58,7 @@ function Main1() {
                             <div className={width < 678 ? "flexColumn textAlign-center" : "flexColumn textAlign-left"}>
                                 <div className={"h8"}/>
                                 <div className={"ft-16-600 textAlign-center"}>
-                                    사단법인 국제교육교류우호협회<br/>
+                                    <span>사단법인 국제교육교류우호협회</span><br/>
                                     <span className={"ft-16-700"}>이사장 강준영</span>
                                 </div>
                                 <div className={"h8"}/>
@@ -95,7 +95,7 @@ function Main1() {
                         </div>
                         <div className={width < 678 ? "h80" : "w80"}/>
                         <div className={"flexColumn ft-16-400"} style={{lineHeight:"150%"}}>
-                            <span className={"ft-20-700"}>국제교육교류우호협회를 방문해 주신 여러분을 환영합니다.</span><br/><br/>
+                            <span className={"ft-20-700"}>한국국제교육교류우호협회를 방문해 주신 여러분을 환영합니다.</span><br/><br/>
 
                             글로벌 사회가 갈수록 가까워지고 있습니다. 이제 ‘지구촌’이라는 말이 나올 정도입니다. 안 그래도 지정학적 특성상 글로벌 교류가 절실한 게 한국입니다.<br/><br/>
                             지구촌 시대 글로벌 교류는 한국의 미래 운명을 좌우할 가장 중요한 요소입니다.<br/><br/>
@@ -114,7 +114,7 @@ function Main1() {
                 </div>
                 :
                 sub === "1" ?
-                    <div style={{ padding: '20px', margin: '0 auto' }}>
+                    <div className={"flexColumn flexAlign-row"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
                         <div className={"flexColumn ft-16-400"} style={{lineHeight:"150%"}}>
                             <span className={"ft-20-700"}>지구촌 시대 글로벌 교류는 한국의 미래 운명을 좌우할 가장 중요한 요소입니다.</span><br/>
                             <span className={"ft-20-700"}>협회는 어린 학생시절부터 글로벌 교류를 하도록 지원하자는 취지에서 만들어졌습니다.</span><br/><br/>
@@ -199,12 +199,12 @@ function Main1() {
                         <div className={"h100"}/>
                     </div>                    :
                     sub==="2" ?
-                        <div style={{ padding: '20px', margin: '0 auto', textAlign: 'center' }}>
+                        <div className={"flexColumn flexAlign-row"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
                             <img src={"/images/main1sub0_2.png"} className={"w-full"}/>
                             <div className={"h100"}/>
                         </div>                        :
                         sub==="3" ?
-                            <div style={{ padding: '20px', margin: '0 auto' }}>
+                            <div className={"flexColumn flexAlign-row"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
                                 <h2>협회 연혁</h2>
 
                                 {/* 2021's */}
