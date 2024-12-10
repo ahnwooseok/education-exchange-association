@@ -8,4 +8,6 @@ export const BoardSearch = (postType, data) => {
         withCredentials: true,
     });
 }
-
+export const AuthLoginPost = (data) => {
+    return axios.post(BACKEND_URL + `auth/login`, data );
+}

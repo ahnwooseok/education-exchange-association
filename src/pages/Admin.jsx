@@ -5,6 +5,7 @@ import useWindowWidth from "../hooks/useWindowWidth.jsx";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
+import AdminForm from "./AdminForm.jsx";
 
 function Admin() {
     const [user,setUser]= useRecoilState(userInfo)
@@ -20,54 +21,64 @@ function Admin() {
     };
 
 
+    const [selected, setSelected] = useState(0)
+
     return (
-        <div className={"flexRow"} style={{width:"100vw"}} >
-
-            <div className={"flexColumn bg-black"} style={{minWidth:"190px", width:"190px", padding:"16px", height:"100vh"}}>
-                <div className={"h20"}/>
-                <div className={"ft-20-800 co-white ft-main-1"}>국제교육교류우호협회 [Admin]</div>
-
-                <div className={"h40"}/>
-                <div className={"ft-16-700 co-white cursor"} style={{marginLeft:"24px"}} onClick={()=>{routerPush("/")}}>공지사항</div>
-                <div className={"h12"}/>
-                <div className={"ft-16-700 co-white cursor"} style={{marginLeft:"24px"}} onClick={()=>{routerPush("/")}}>보도자료</div>
-                <div className={"h12"}/>
-                <div className={"ft-16-700 co-white cursor"} style={{marginLeft:"24px"}} onClick={()=>{routerPush("/")}}>협력제안</div>
-                <div className={"h12"}/>
-
-            </div>
-            <div className={"w-full flexColumn"}>
-                <div className={"flexRow flexAlign-column flexAlign-end h72 bg-gray"} style={{minWidth:"1440px"}}>
-
-                    <div className={"w40"}/>
+        <div className={"flexColumn"} style={{width:"100vw"}} >
+            <div className={"w-full flexAlign"} style={{minHeight:"80px"}}>
+                <div
+                    className={"flexRow flexAlign-row w-full"}
+                    style={{
+                        padding: "10px 20px",
+                        flexWrap: width <= 678 ? "wrap" : "nowrap", // 좁은 화면에서는 줄바꿈 허용
+                        borderBottom:"1px solid #d9d9d9"
+                    }}
+                >
+                    {["공지사항", "보도자료", "협력제안"].map((item, idx) => (
+                        <div
+                            key={idx}
+                            className={"cursor ft-16-700"}
+                            onClick={() => {
+                                setSelected(idx); // 현재 선택된 버튼을 state로 관리
+                            }}
+                            style={{
+                                marginLeft: width <= 678 ? "0" : idx === 0 ? "0" : "24px", // 첫 번째 버튼에는 margin 제외
+                                marginBottom: width <= 678 ? "12px" : "0", // 모바일에서 버튼 간 간격
+                                padding: "8px 16px",
+                                borderRadius: "8px",
+                                backgroundColor: selected === idx ? "#007BFF" : "transparent", // 선택된 버튼 배경색
+                                color: selected === idx ? "#fff" : "#ccc", // 선택된 버튼 글자색
+                                textAlign: "center",
+                                minWidth: "80px",
+                                transition: "all 0.3s ease", // 부드러운 색상 전환 효과
+                            }}
+                        >
+                            {item}
+                        </div>
+                    ))}
                     <div
-                        className={"flexAlign bg-white co-black ft-14-400 cursor round-8"}
-                        style={{padding:"8px 10px"}}
-                        onClick={()=>{
-                            localStorage.clear();
-                            routerPush("/")
+                        className={"cursor ft-16-700"}
+                        onClick={() => {
+                            localStorage.clear(); // 로컬 스토리지 비우기
+                            routerPush("/"); // 홈으로 이동
                         }}
-                    >Sign Out</div>
-                </div>
-                <div className={"w-full"} style={{height:"calc(100vh - 72px)"}}>
-
-                    <div>
-                        <h1>TOAST UI Editor with React</h1>
-                        <Editor
-                            ref={editorRef}
-                            initialValue="Hello, TOAST UI Editor!" // 초기 내용
-                            previewStyle="vertical" // 프리뷰 스타일: vertical 또는 tab
-                            height="500px" // 에디터 높이
-                            initialEditType="markdown" // 초기 에디터 타입: markdown 또는 wysiwyg
-                            useCommandShortcut={true} // 단축키 활성화 여부
-                        />
-                        <button onClick={handleGetContent} style={{ marginTop: "20px" }}>
-                            Get Markdown Content
-                        </button>
+                        style={{
+                            marginLeft: width <= 678 ? "0" : "24px", // 첫 번째 버튼에는 margin 제외
+                            marginBottom: width <= 678 ? "12px" : "0", // 모바일에서 버튼 간 간격
+                            padding: "8px 16px",
+                            borderRadius: "8px",
+                            backgroundColor: "#ff4d4f", // 로그아웃 버튼 고유 색상
+                            color: "#fff", // 로그아웃 버튼 글자색
+                            textAlign: "center",
+                            minWidth: "80px",
+                            transition: "all 0.3s ease", // 부드러운 색상 전환 효과
+                        }}
+                    >
+                        로그아웃
                     </div>
                 </div>
             </div>
-
+            <AdminForm/>
 
         </div>
     );

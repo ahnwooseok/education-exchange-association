@@ -11,8 +11,8 @@ import Main1 from "./pages/Main1.jsx";
 import Main2 from "./pages/Main2.jsx";
 import Main3 from "./pages/Main3.jsx";
 import Main4 from "./pages/Main4.jsx";
-import NoticeDetail from "./components/NoticeDetail.jsx";
 import Admin from "./pages/Admin.jsx";
+import AdminLogin from "./pages/AdminLogin.jsx";
 
 function App() {
     const [system, setSystem] = useRecoilState(systemInfo);
@@ -30,10 +30,11 @@ function App() {
 
     return (
 
-        window.location.pathname === "/admin" ?
+        window.location.pathname.startsWith("/admin") ?
 
             <Routes>
                 <Route path="/admin" element={<Admin />} />,
+                <Route path="/admin/login" element={<AdminLogin />} />,
             </Routes>
             :
 
@@ -47,7 +48,12 @@ function App() {
                     <Route path="/main2" element={<Main2 />} />,
                     <Route path="/main3" element={<Main3 />} />,
                     <Route path="/main4" element={<Main4 />} />,
-                    <Route path="/noticedetail" element={<NoticeDetail />} />
+
+
+                    <Route path="/admin" element={<Admin />} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
+
+                    <Route path="*" element={<Navigate to="/" />} />
                 </Routes>
             </div>
             <Footer/>

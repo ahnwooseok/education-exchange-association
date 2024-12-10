@@ -1,16 +1,48 @@
-import {useEffect, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import {useEffect, useRef, useState} from "react";
+import {useRecoilState} from "recoil";
+import {userInfo} from "../contexts/recoil.jsx";
 import useWindowWidth from "../hooks/useWindowWidth.jsx";
-import {BoardSearch} from "../contexts/api.jsx";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
+import { Editor } from "@toast-ui/react-editor";
+import "@toast-ui/editor/dist/toastui-editor.css";
 
-function Main4() {
-    const searchParams = new URLSearchParams(location.search);
-    const sub = searchParams.get('sub');
-    const postId = searchParams.get('postId');
+function AdminForm() {
+    const [user,setUser]= useRecoilState(userInfo)
     const width = useWindowWidth();
-    const subContents = ["공지사항", "보도자료"];
     const routerPush = useNavigate();
+    const searchParams = new URLSearchParams(location.search);
+    const postId = searchParams.get('postId');
+    const editorRef = useRef();
 
+
+    const [selectedPage, setSelectedPage] = useState(1);
+    const [size, setSize] = useState(10);
+    const [data, setData] = useState(null);
+    const [officeList, setOfficeList] = useState(null);
+
+    useEffect(() => {
+        getData(selectedPage, size);
+    }, [selectedPage, size])
+
+    const getData = (page, size) => {
+        // BoardSearch(sub === "0" ? "notice" : "news", {
+        //     page: page,
+        //     size: size,
+        // })
+        //     .then((response) => {
+        //         let {status, data} = response;
+        //         if(status == 200){
+        //             setData(data)
+        //         }
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     })
+
+
+        // sub기준으로 데이터 받아오기
+        setData(exampleData)
+    }
     const exampleData = {
         "page": 0,
         "size": 0,
@@ -180,45 +212,19 @@ function Main4() {
         ]
     }
 
-    const [selectedPage, setSelectedPage] = useState(1);
-    const [size, setSize] = useState(10);
-    const [data, setData] = useState(null);
-    const [officeList, setOfficeList] = useState(null);
-
-    useEffect(() => {
-        getData(selectedPage, size);
-    }, [selectedPage, size])
-
-    const getData = (page, size) => {
-        // BoardSearch(sub === "0" ? "notice" : "news", {
-        //     page: page,
-        //     size: size,
-        // })
-        //     .then((response) => {
-        //         let {status, data} = response;
-        //         if(status == 200){
-        //             setData(data)
-        //         }
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     })
+    const handleGetContent = () => {
+        const editorInstance = editorRef.current.getInstance();
+        const markdown = editorInstance.getMarkdown(); // 마크다운 값 가져오기
+        console.log(markdown);
+    };
 
 
-        // sub기준으로 데이터 받아오기
-        setData(exampleData)
-    }
+    const [editModeOn, setEditModeOn] = useState(false)
+
 
     return (
-        <div className="w-full flexColumn">
-            <div className={"h60"} />
-            <div className={"relative"}>
-                <img src={`/images/main4sub${sub}.png`} className={"w-full round-20"} style={{maxHeight:"500px"}}/>
-                <div className={"TitleS11 absolute White"} style={{ left: "40px", top: "80%" }}>
-                    {subContents[sub]}
-                </div>
-            </div>
-            <div className={"h40"} />
+
+        <div className={"w-full"} style={{height:"calc(100vh - 80px)"}}>
             {
                 postId === null ?
                     <div className={"flexColumn flexAlign-row w-full"} style={{ padding: '20px', margin: '0 auto', maxWidth:"1000px"}}>
@@ -269,8 +275,8 @@ function Main4() {
                                     }}
                                     className={"flexRow flexAlign-around cursor"}
                                     onClick={() => {
-                                        // routerPush(`/main4?sub=${sub}&postId=${postId}`)
-                                        routerPush(`/main4?sub=${sub}&postId=ㄹㅇ니러ㅣ안러ㅏㅣㅇ너리ㅏㅇ너`)
+                                        // routerPush(`/admin?postId=${postId}`)
+                                        routerPush(`/admin?postId=ㄹㅇ니러ㅣ안러ㅏㅣㅇ너리ㅏㅇ너`)
                                     }}
                                 >
                                     <div
@@ -380,9 +386,88 @@ function Main4() {
                                 padding: width <= 678 ? "10px" : "20px",
                             }}
                         >
-                            <div className={"ft-16-600 co-black textAlign-left"}>
-                                {exampleDetailData.title}
+
+                            <div className={"flexRow flexAlign-between"}>
+                                <div className={"ft-16-600 co-black textAlign-left"}>
+                                    {exampleDetailData.title}
+                                </div>
+
+                                <div className={"flexRow flexAlign-column"}>
+
+
+                                    <div
+                                        className={"cursor ft-16-700"}
+                                        onClick={() => {
+                                            if(editModeOn){
+                                                // 수정 api
+                                                setEditModeOn(false)
+                                            }
+                                            else{
+                                                // 수정 모드
+                                                setEditModeOn(true)
+                                            }
+                                        }}
+                                        style={{
+                                            marginLeft: width <= 678 ? "0" : "24px", // 첫 번째 버튼에는 margin 제외
+                                            marginBottom: width <= 678 ? "12px" : "0", // 모바일에서 버튼 간 간격
+                                            padding: "8px 16px",
+                                            borderRadius: "8px",
+                                            backgroundColor: editModeOn ? "#007BFF" : "transparent", // 선택된 버튼 배경색
+                                            color: editModeOn ? "#fff" : "#ccc", // 선택된 버튼 글자색
+                                            border: editModeOn ? "" : "1px solid #ccc", // 선택된 버튼 글자색
+                                            textAlign: "center",
+                                            minWidth: "80px",
+                                            transition: "all 0.3s ease", // 부드러운 색상 전환 효과
+                                        }}
+                                    >
+                                        {editModeOn ? "저장" : "수정"}
+                                    </div>
+
+
+                                    <div
+                                        className={"cursor ft-16-700"}
+                                        onClick={() => {
+                                            // 삭제 api
+                                        }}
+                                        style={{
+                                            marginLeft: width <= 678 ? "0" : "24px", // 첫 번째 버튼에는 margin 제외
+                                            marginBottom: width <= 678 ? "12px" : "0", // 모바일에서 버튼 간 간격
+                                            padding: "8px 16px",
+                                            borderRadius: "8px",
+                                            backgroundColor: "#ff4d4f", // 로그아웃 버튼 고유 색상
+                                            color: "#fff", // 로그아웃 버튼 글자색
+                                            textAlign: "center",
+                                            minWidth: "80px",
+                                            transition: "all 0.3s ease", // 부드러운 색상 전환 효과
+                                        }}
+                                    >
+                                        삭제
+                                    </div>
+
+
+                                    <div
+                                        className={"cursor ft-16-700"}
+                                        onClick={() => {
+                                            routerPush(-1)
+                                        }}
+                                        style={{
+                                            marginLeft: width <= 678 ? "0" : "24px", // 첫 번째 버튼에는 margin 제외
+                                            marginBottom: width <= 678 ? "12px" : "0", // 모바일에서 버튼 간 간격
+                                            padding: "8px 16px",
+                                            borderRadius: "8px",
+                                            color: "#ccc", // 선택된 버튼 글자색
+                                            border:  "1px solid #ccc", // 선택된 버튼 글자색
+                                            textAlign: "center",
+                                            minWidth: "80px",
+                                            transition: "all 0.3s ease", // 부드러운 색상 전환 효과
+                                        }}
+                                    >
+                                        목록
+                                    </div>
+                                </div>
                             </div>
+
+
                             <div className={"h8"} />
                             <div
                                 className={"flexColumn flexAlign-start"} // 반응형에서 FlexRow -> FlexColumn
@@ -423,41 +508,44 @@ function Main4() {
                             );
                         })}
 
-                        <div
-                            className={"flexColumn w-full"} // FlexRow -> FlexColumn
-                            style={{
-                                borderBottom: "1px solid #d9d9d9",
-                                fontSize: width <= 678 ? "12px" : "14px",
-                                padding: width <= 678 ? "10px" : "20px",
-                                color: "#333333",
-                            }}
-                        >
-                            {exampleDetailData.content}
-                        </div>
+                        {
+                            editModeOn ?
+                                <div>
+                                    <h1>TOAST UI Editor with React</h1>
+                                    <Editor
+                                        ref={editorRef}
+                                        initialValue="Hello, TOAST UI Editor!" // 초기 내용
+                                        previewStyle="vertical" // 프리뷰 스타일: vertical 또는 tab
+                                        height="500px" // 에디터 높이
+                                        initialEditType="markdown" // 초기 에디터 타입: markdown 또는 wysiwyg
+                                        useCommandShortcut={true} // 단축키 활성화 여부
+                                    />
+                                    <button onClick={handleGetContent} style={{ marginTop: "20px" }}>
+                                        Get Markdown Content
+                                    </button>
+                                </div>
+                                :
+                                <div
+                                    className={"flexColumn w-full"} // FlexRow -> FlexColumn
+                                    style={{
+                                        borderBottom: "1px solid #d9d9d9",
+                                        fontSize: width <= 678 ? "12px" : "14px",
+                                        padding: width <= 678 ? "10px" : "20px",
+                                        color: "#333333",
+                                    }}
+                                >
+                                    {exampleDetailData.content}
+                                </div>
+                        }
 
-                        <div className={"h40"} />
-                        <div className={"w-full flexAlign"}>
-                            <div
-                                className={
-                                    "ft-14-400 co-black cursor flexAlign round-8 border-black"
-                                }
-                                style={{
-                                    padding: width <= 678 ? "6px 8px" : "8px 10px",
-                                    minWidth: width <= 678 ? "120px" : "160px",
-                                    fontSize: width <= 678 ? "12px" : "14px",
-                                }}
-                                onClick={() => {
-                                    routerPush(-1);
-                                }}
-                            >
-                                목록
-                            </div>
-                        </div>
+
                         <div className={"h80"} />
                     </div>
             }
         </div>
+
+
     );
 }
 
-export default Main4;
+export default AdminForm;
