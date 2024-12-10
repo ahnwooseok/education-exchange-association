@@ -135,7 +135,7 @@ function Home() {
                                 className={"cursor flexRow flexAlign-column round-8"}
                                 style={{padding:"4px", border:"1px solid #939393"}}
                                 onClick={()=>{
-                                    alert("hi")
+                                    routerPush("/main4?sub=0")
                                 }}
                             >
                                 <div className={"Body2M16 GR600_93"}>바로가기</div>
@@ -145,7 +145,7 @@ function Home() {
 
                         </div>
 
-                        <div className={"h20"}/>
+                        <div className={"h40"}/>
                         <div className={"flexColumn"}>
                             {alertItems.map((item, idx) => (
                                 <div
@@ -157,7 +157,7 @@ function Home() {
                                     }}
                                     className={"cursor"}
                                     onClick={()=>{
-                                        alert("이동")
+
                                     }}
                                 >
                                     <div className={"Title2B20 GR800_3D"}>{item.title}</div>
@@ -179,7 +179,7 @@ function Home() {
                                 className={"cursor flexRow flexAlign-column round-8"}
                                 style={{padding:"4px", border:"1px solid #939393"}}
                                 onClick={()=>{
-                                    alert("hi")
+                                    routerPush("/main4?sub=1")
                                 }}
                             >
                                 <div className={"Body2M16 GR600_93"}>바로가기</div>
@@ -204,7 +204,7 @@ function Home() {
                                         alert("이동")
                                     }}
                                 >
-                                    <img src={"/images/example.jpg"} className={"w200 h100"}/>
+                                    <img src={"/images/example.jpg"} className={"w200 h100 round-12"}/>
                                     <div className={"w20"}/>
                                     <div className={"flexColumn w-full flexAlign"}>
                                         <div className={"Title3S18 GR800_3D textAlign-center"}>{item.title}</div>

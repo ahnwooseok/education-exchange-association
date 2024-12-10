@@ -2,7 +2,6 @@ import {useEffect, useState} from 'react'
 import {useRecoilState, useSetRecoilState} from "recoil";
 import {requestSetSystemItem, systemInfo} from "./contexts/recoil.jsx";
 import {enqueueSnackbar} from "notistack";
-import {UserGetUserInfo} from "./contexts/api.jsx";
 import {BrowserRouter, Router, Route, Routes, useLocation, useNavigate, NavLink} from "react-router-dom";
 import Home from "./pages/Home.jsx";
 import MobileNavigation from "./components/MobileNavigation.jsx";
